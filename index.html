@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <title>Peekin</title>
+
+  <!-- Required meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="description" content="Create color palette with Javascript" />
+  <meta name="keywords" content="JavaScript, Color spaces, CSS, Color palette, Color quantization" />
+  <meta name="author" content="Zygimantas Sniurevicius" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
+  <link rel="icon" sizes="76x76" href="./assets/favicon.ico">
+  
+
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="./styles.css" />
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <nav class="navbar bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="./assets/logo.png" alt="" width="100%" height="30">
+      </a>
+    </div>
+  </nav>
+
+  <div class="container pb-3">
+    <div class="row gap-3">
+
+      <div class="col-12">
+        <form action="#">
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Upload an image</label>
+            <div class="input-group mb-3">
+              <input class="form-control" type="file" id="formFile" placeholder="">
+              <button class="btn btn-blue" type="button" id="button-addon2" onclick="main();">
+                Button
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 col-md-6 mx-auto" id="image">
+            <canvas id="canvas"></canvas>
+          </div>
+
+          <div class="col-12">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 border-end border-dark">
+                <h1 class="text-center">Colors Images</h1>
+                <div id="palette" class="row"></div>
+              </div>
+
+              <div class="col-12 col-sm-12 col-md-6">
+                <h1 class="text-center">Colors Complementary</h1>
+                <div id="complementary" class="row"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <h1>Color palette creator</h1>
+  <form action="#">
+    <input type="file" id="imgfile" />
+    <input type="button" id="btnLoad" value="Load" onclick="main();" />
+  </form>
+  <canvas id="canvas"></canvas>
+  <div id="palette"></div>
+  <hr />
+  <div id="complementary"></div> -->
+
+  <!-- import script javascript -->
+  <script src="./index.js"></script>
+
+  <!-- Bootstrap script js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

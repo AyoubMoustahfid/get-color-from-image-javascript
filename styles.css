@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1 {
+  font-weight: bold;
+  font-size: 3rem;
+  letter-spacing: -4.5px;
+}
+form {
+  margin: 20px;
+}
+canvas {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+#palette,
+#complementary {
+  /* display: flex;
+
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 3px; */
+}
+
+/* card style */
+.card{
+  width: 100%;
+}
+.card-img-top {
+  height: 100px;
+}
+
+
+
+/* ==================================== *
+*           Buton Style
+* =================================== */
+
+.btn-blue{
+  background-color: rgb(29 78 216) !important;
+  border: 1px solid rgb(29 78 216) !important;
+  color: white !important;
+  font-weight: 700;
+  
+}
