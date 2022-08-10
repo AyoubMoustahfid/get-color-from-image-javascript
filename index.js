@@ -1,3 +1,8 @@
+
+function copy(hexText){
+   navigator.clipboard.writeText(hexText);
+}
+
 const buildPalette = (colorsList) => {
   const paletteContainer = document.getElementById("palette");
   const complementaryContainer = document.getElementById("complementary");
@@ -6,8 +11,8 @@ const buildPalette = (colorsList) => {
   paletteContainer.innerHTML = "";
   complementaryContainer.innerHTML = "";
 
-  const orderedByColor = orderByLuminance(colorsList);
-  const hslColors = convertRGBtoHSL(orderedByColor);
+  const orderedByColor = orderByLuminance(colorsList).sort((a,b) => a.r - b.r && a.g - b.g && a.b - b.b)   ;
+  const hslColors = convertRGBtoHSL(orderedByColor).sort((a,b) => a.r - b.r && a.g - b.g && a.b - b.b)   ;
 
   for (let i = 0; i < orderedByColor.length; i++) {
     const hexColor = rgbToHex(orderedByColor[i]);
@@ -25,9 +30,9 @@ const buildPalette = (colorsList) => {
         continue;
       }
     }
-
     /** ---------------------------------------
      * ======= PALETTE COLORS =========
+     * onclick="navigator.clipboard.writeText('${hexColor}')"
      ----------------------------------------*/ 
     // create the div and text elements for both colors & append it to the document
     const pallete = `
@@ -35,7 +40,15 @@ const buildPalette = (colorsList) => {
         <div class="card">
             <div class="card-img-top" style="background-color: ${hexColor}"></div>
             <div class="card-body">
-                <p class="card-text">${hexColor}</p>
+                <p class="card-text" id="code-hex">${hexColor}</p>
+                <button 
+                  class="btn btn-primary"
+                  onclick="copy('${hexColor}')"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" style="width: 15px; height: 15px" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                  </svg>
+                </button>
             </div>
         </div>
       </div>
@@ -51,6 +64,14 @@ const buildPalette = (colorsList) => {
               <div class="card-img-top" style="background-color: ${`hsl(${hslColors[i].h},${hslColors[i].s}%,${hslColors[i].l}%)`}"></div>
               <div class="card-body">
                   <p class="card-text">${hexColorComplementary}</p>
+                  <button 
+                    class="btn btn-primary"
+                    onclick="copy('${hexColorComplementary}')"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 15px; height: 15px" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                    </svg>
+                  </button>
               </div>
           </div>
         </div>
@@ -59,6 +80,10 @@ const buildPalette = (colorsList) => {
       complementaryContainer.innerHTML += complementary;
     }
   }
+
+ 
+
+  // console.log('res', rgbToHex(orderedByColor[i]))
 };
 
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
@@ -171,7 +196,7 @@ const orderByLuminance = (rgbValues) => {
   };
 
   return rgbValues.sort((p1, p2) => {
-    return calculateLuminance(p2) - calculateLuminance(p1);
+    return calculateLuminance(p2) - calculateLuminance(p1)  
   });
 };
 
@@ -185,8 +210,8 @@ const buildRgb = (imageData) => {
       g: imageData[i + 1],
       b: imageData[i + 2],
     };
-
     rgbValues.push(rgb);
+
   }
 
   return rgbValues;
@@ -238,6 +263,17 @@ const findBiggestColorRange = (rgbValues) => {
   const gRange = gMax - gMin;
   const bRange = bMax - bMin;
 
+  const distance = Math.sqrt(Math.pow(rRange, 2) + Math.pow(gRange, 2) + Math.pow(bRange, 2));
+
+  // console.log('case smothly', 
+  //   Math.min(Math.sqrt( 
+  //     ((2 + (distance / 256))* Math.pow(rRange, 2)) + 
+  //     (4 * Math.pow(gRange, 2)) + 
+  //     ((2 + ((255 - distance) / 256)) * Math.pow(bRange, 2))
+  //   ))
+  // )
+
+  // console.log('distance', distance);
   // determine which color has the biggest difference
   const biggestRange = Math.max(rRange, gRange, bRange);
   if (biggestRange === rRange) {
@@ -306,7 +342,7 @@ const main = () => {
   const image = new Image();
   const file = imgFile.files[0];
   const fileReader = new FileReader();
-  console.log('image', !imgFile.value)
+
   if(!imgFile.value){
     image_show.style.height = "0px"
   }else {
@@ -316,6 +352,7 @@ const main = () => {
   // Whenever file & image is loaded procced to extract the information from the image
   fileReader.onload = () => {
     image.onload = () => {
+
       // Set the canvas size to be the same as of the uploaded image
 
       canvas.width = image.width;
