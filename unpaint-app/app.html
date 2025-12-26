@@ -1,43 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎨 Paint by Numbers Generator</title>
+
+    <!-- Favicon -->
+    <link rel="icon" sizes="76x76" href="../assets/favicon.ico">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quantize/1.0.0/quantize.min.js"></script>
+
+    <!-- Style CDN link Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
+
 <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-md">
+            <a class="navbar-brand" href="#">
+                <img src="/assets/logo.png" alt="" width="100%" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Pink</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/drawing_app/drawing.html">Draw</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="app.html">Unpaint</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
         <header>
             <h1><i class="fas fa-palette"></i> Paint by Numbers Generator</h1>
             <p class="subtitle">Transform any image into a beautiful paint-by-numbers pattern</p>
         </header>
-        
+
         <main>
             <!-- Controls Section -->
             <section class="controls">
                 <h2><i class="fas fa-sliders-h"></i> Settings</h2>
-                
+
                 <div class="slider-group">
                     <label for="numColors"><i class="fas fa-fill-drip"></i> Number of Colors:</label>
                     <input type="range" id="numColors" min="3" max="20" value="10">
                     <span id="numColorsValue" class="value">10</span>
                 </div>
-                
+
                 <div class="slider-group">
                     <label for="minArea"><i class="fas fa-expand"></i> Minimum Region Area:</label>
                     <input type="range" id="minArea" min="5" max="100" value="10">
                     <span id="minAreaValue" class="value">10</span>
                 </div>
-                
+
                 <div class="slider-group">
                     <label for="fontSize"><i class="fas fa-font"></i> Font Size:</label>
                     <input type="range" id="fontSize" min="4" max="20" value="7">
                     <span id="fontSizeValue" class="value">7</span>
                 </div>
-                
+
                 <div class="button-group">
                     <button id="loadImageBtn" class="btn btn-primary">
                         <i class="fas fa-folder-open"></i> Load New Image
@@ -46,10 +81,10 @@
                         <i class="fas fa-magic"></i> Generate Paint by Numbers
                     </button>
                 </div>
-                
+
                 <input type="file" id="imageUpload" accept="image/*" style="display: none;">
             </section>
-            
+
             <!-- Canvas Section -->
             <section class="canvas-section">
                 <div class="canvas-container">
@@ -58,7 +93,7 @@
                     </h2>
                     <canvas id="originalCanvas"></canvas>
                 </div>
-                
+
                 <div class="canvas-container">
                     <h2>
                         <i class="fas fa-paint-brush"></i> Paint by Numbers
@@ -69,23 +104,29 @@
                     <canvas id="resultCanvas"></canvas>
                 </div>
             </section>
-            
+
             <!-- Palette Section -->
             <section class="palette-section">
                 <h2><i class="fas fa-swatchbook"></i> Color Palette</h2>
                 <div id="palette" class="palette-grid"></div>
             </section>
         </main>
-        
+
         <footer>
             <p class="footer-text">
-                <i class="fas fa-info-circle"></i> 
-                This tool uses advanced image processing to create paint-by-numbers patterns. 
+                <i class="fas fa-info-circle"></i>
+                This tool uses advanced image processing to create paint-by-numbers patterns.
                 Upload any image and adjust the settings to get the perfect result.
             </p>
         </footer>
     </div>
-    
+
     <script src="script.js"></script>
+
+    <!-- Script Javascript Bootstrap V5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
